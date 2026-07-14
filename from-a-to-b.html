@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>From A to B Entertainment</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0B0910;
+  --s1:#150F1E;
+  --s2:#1C1628;
+  --gold:#B8892A;
+  --gold-l:#D4A850;
+  --rose:#A05868;
+  --text:#EBE6DC;
+  --muted:#877E90;
+  --bd:rgba(184,137,42,.14);
+  --bd-h:rgba(184,137,42,.38);
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;font-size:16px;line-height:1.65;overflow-x:hidden;min-height:100vh}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 60% 40% at 15% 5%,rgba(160,88,104,.05) 0,transparent 60%),radial-gradient(ellipse 50% 60% at 85% 90%,rgba(100,60,160,.06) 0,transparent 60%);pointer-events:none;z-index:0}
+.wrap{position:relative;z-index:1}
+
+/* ── AGE GATE ── */
+#gate{position:fixed;inset:0;background:var(--bg);z-index:999;display:flex;align-items:center;justify-content:center;padding:2rem;transition:opacity .5s}
+#gate.out{opacity:0;pointer-events:none}
+.gate-inner{text-align:center;max-width:380px}
+.gate-logo{font-family:'Cormorant Garamond',serif;font-size:2rem;font-style:italic;color:var(--gold);display:block;margin-bottom:.25rem}
+.gate-sub{font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:2.5rem}
+.gate-inner h2{font-family:'Cormorant Garamond',serif;font-size:1.75rem;font-weight:600;margin-bottom:.75rem}
+.gate-inner p{font-size:.82rem;color:var(--muted);line-height:1.7;margin-bottom:2rem}
+.gate-btns{display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap}
+.btn-enter{background:var(--gold);color:#0B0910;border:none;padding:.75rem 1.75rem;font-family:'DM Sans',sans-serif;font-size:.82rem;font-weight:500;letter-spacing:.04em;cursor:pointer;transition:background .2s}
+.btn-enter:hover{background:var(--gold-l)}
+.btn-exit{background:transparent;color:var(--muted);border:1px solid var(--bd);padding:.75rem 1.75rem;font-family:'DM Sans',sans-serif;font-size:.82rem;cursor:pointer;transition:all .2s}
+.btn-exit:hover{border-color:var(--rose);color:var(--rose)}
+
+/* ── HERO ── */
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:5rem 2rem 4rem}
+.hero-eye{font-size:.62rem;letter-spacing:.36em;text-transform:uppercase;color:var(--muted);margin-bottom:3rem}
+.brand-mark{display:flex;align-items:center;gap:1.25rem;margin-bottom:1.75rem}
+.bm-letter{font-family:'Cormorant Garamond',serif;font-size:clamp(5.5rem,15vw,10rem);font-weight:700;line-height:1;color:var(--text);opacity:0;transform:translateY(10px);transition:opacity .7s,transform .7s}
+.bm-letter.in{opacity:1;transform:none}
+.bm-arrow{display:flex;align-items:center;padding-top:.5rem;position:relative}
+.arrow-track{width:clamp(2.5rem,7vw,5rem);height:1px;background:linear-gradient(to right,var(--gold),var(--gold-l));transform-origin:left;transform:scaleX(0);transition:transform .8s cubic-bezier(.22,.68,0,1.2)}
+.arrow-track.in{transform:scaleX(1)}
+.arrow-head{width:0;height:0;border-left:7px solid var(--gold-l);border-top:4px solid transparent;border-bottom:4px solid transparent;opacity:0;transition:opacity .2s .8s}
+.arrow-head.in{opacity:1}
+.brand-name{font-family:'Cormorant Garamond',serif;font-size:clamp(.95rem,2.5vw,1.3rem);font-style:italic;color:var(--gold);letter-spacing:.1em;opacity:0;transition:opacity .6s .6s}
+.brand-name.in{opacity:1}
+.hero-tag{font-size:clamp(.8rem,1.8vw,.92rem);font-weight:300;color:var(--muted);letter-spacing:.04em;max-width:34ch;opacity:0;transition:opacity .6s .85s}
+.hero-tag.in{opacity:1}
+.scroll-hint{margin-top:3rem;opacity:0;transition:opacity .6s 1.2s}
+.scroll-hint.in{opacity:1}
+.scroll-hint span{display:block;width:1px;height:48px;background:linear-gradient(to bottom,transparent,var(--bd-h));margin:0 auto}
+
+/* ── RULE ── */
+.rule{height:1px;background:linear-gradient(to right,transparent,var(--bd),transparent);max-width:900px;margin:0 auto}
+
+/* ── SECTION ── */
+section{max-width:900px;margin:0 auto;padding:5rem 2rem}
+.sec-label{font-size:.6rem;letter-spacing:.38em;text-transform:uppercase;color:var(--gold);margin-bottom:1.25rem;display:flex;align-items:center;gap:.75rem}
+.sec-label::after{content:'';width:40px;height:1px;background:var(--bd-h)}
+h2{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,5vw,3rem);font-weight:600;line-height:1.15;margin-bottom:1.25rem}
+
+/* ── BIO ── */
+.bio-grid{display:grid;grid-template-columns:1fr 1.7fr;gap:3.5rem;align-items:start}
+@media(max-width:620px){.bio-grid{grid-template-columns:1fr}}
+.bio-photo{aspect-ratio:3/4;background:var(--s1);border:1px solid var(--bd);position:relative;overflow:hidden}
+.bio-photo-inner{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:3.5rem;font-style:italic;color:var(--bd-h)}
+.bio-photo::after{content:'Add your photo here';position:absolute;bottom:0;left:0;right:0;padding:.5rem;font-size:.65rem;letter-spacing:.08em;text-align:center;color:var(--muted);background:rgba(11,9,16,.7)}
+.bio-pills{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1.25rem}
+.pill{font-size:.68rem;letter-spacing:.08em;padding:.3em .75em;border:1px solid var(--bd);color:var(--muted)}
+.bio-text p{font-size:.9rem;color:rgba(235,230,220,.75);line-height:1.8;margin-bottom:.9rem}
+
+/* ── PLATFORMS ── */
+.plat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:.875rem}
+.plat-card{background:var(--s1);border:1px solid var(--bd);padding:1.5rem;text-decoration:none;color:var(--text);display:flex;flex-direction:column;gap:.6rem;transition:background .22s,border-color .22s,transform .22s;position:relative;overflow:hidden}
+.plat-card:hover{background:var(--s2);border-color:var(--bd-h);transform:translateY(-2px)}
+.plat-card::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:var(--gold);transition:width .3s cubic-bezier(.22,.68,0,1.2)}
+.plat-card:hover::after{width:100%}
+.plat-card.dim{opacity:.44;pointer-events:none}
+.plat-icon{width:34px;height:34px;background:var(--s2);display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:700;color:var(--gold)}
+.plat-name{font-weight:500;font-size:.94rem}
+.plat-desc{font-size:.75rem;color:var(--muted);line-height:1.55;flex:1}
+.badge{font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;padding:.22em .62em;align-self:flex-start}
+.badge-live{border:1px solid rgba(184,137,42,.3);color:var(--gold);background:rgba(184,137,42,.08)}
+.badge-local{border:1px solid rgba(160,88,104,.3);color:var(--rose);background:rgba(160,88,104,.08)}
+.badge-soon{border:1px solid var(--bd);color:var(--muted)}
+.plat-go{font-size:.7rem;color:var(--gold);opacity:0;margin-top:.25rem;transition:opacity .2s}
+.plat-card:hover .plat-go{opacity:1}
+
+/* ── CONTACT ── */
+.contact-box{background:var(--s1);border:1px solid var(--bd);padding:3.5rem 2rem;text-align:center}
+.contact-box p{font-size:.87rem;color:var(--muted);max-width:40ch;margin:0 auto 2rem;line-height:1.75}
+.contact-btns{display:flex;flex-wrap:wrap;gap:.875rem;justify-content:center}
+.cbtn{display:inline-flex;align-items:center;gap:.4rem;padding:.72rem 1.6rem;font-family:'DM Sans',sans-serif;font-size:.8rem;font-weight:500;letter-spacing:.04em;text-decoration:none;cursor:pointer;border:none;transition:all .2s}
+.cbtn-p{background:var(--gold);color:#0B0910}
+.cbtn-p:hover{background:var(--gold-l)}
+.cbtn-s{background:transparent;color:var(--text);border:1px solid var(--bd)}
+.cbtn-s:hover{border-color:var(--gold);color:var(--gold)}
+
+/* ── FOOTER ── */
+footer{text-align:center;padding:3rem 2rem;border-top:1px solid var(--bd);font-size:.7rem;color:var(--muted);letter-spacing:.05em;position:relative;z-index:1}
+.ft-brand{font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--gold);font-size:.95rem;display:block;margin-bottom:.4rem}
+.ft-note{margin-top:.6rem;font-size:.64rem}
+
+/* ── FADE-IN ── */
+.fi{opacity:0;transform:translateY(18px);transition:opacity .6s,transform .6s}
+.fi.in{opacity:1;transform:none}
+</style>
+</head>
+<body>
+
+<!-- AGE GATE -->
+<div id="gate">
+  <div class="gate-inner">
+    <span class="gate-logo">From A to B</span>
+    <span class="gate-sub">Entertainment · Adults Only</span>
+    <h2>18+ Content</h2>
+    <p>This site contains adult content intended for people 18 years of age and older. By entering you confirm you meet this requirement and consent to viewing mature material.</p>
+    <div class="gate-btns">
+      <button class="btn-enter" onclick="enter()">I am 18+ &mdash; Enter</button>
+      <button class="btn-exit" onclick="location.href='https://www.google.com'">Exit</button>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-eye">Adult Entertainment &middot; Shelton, CT</div>
+  <div class="brand-mark">
+    <span class="bm-letter" id="la">A</span>
+    <div class="bm-arrow">
+      <div class="arrow-track" id="at"></div>
+      <div class="arrow-head" id="ah"></div>
+    </div>
+    <span class="bm-letter" id="lb">B</span>
+  </div>
+  <div class="brand-name" id="bn">From A to B Entertainment</div>
+  <p class="hero-tag" id="ht">Amy + Bill &nbsp;&middot;&nbsp; Bi Couple &nbsp;&middot;&nbsp; Lifestyle &nbsp;&middot;&nbsp; Content Creators<br>Friendship first &mdash; weekends for mischief.</p>
+  <div class="scroll-hint" id="sh"><span></span></div>
+</div>
+
+<div class="rule"></div>
+
+<!-- BIO -->
+<section class="fi">
+  <div class="sec-label">Who We Are</div>
+  <div class="bio-grid">
+    <div class="bio-photo"><div class="bio-photo-inner">A&nbsp;&amp;&nbsp;B</div></div>
+    <div>
+      <h2>Amy + Bill</h2>
+      <div class="bio-pills">
+        <span class="pill">Shelton, CT</span>
+        <span class="pill">Ages 51 &amp; 52</span>
+        <span class="pill">Bisexual · Pansexual</span>
+        <span class="pill">Non-Monogamous</span>
+        <span class="pill">Married</span>
+      </div>
+      <p>We're a real, playful, affectionate bi couple from Connecticut who've been living the lifestyle authentically for years. Not a revolving door. Not a transaction.</p>
+      <p>We're flirty, warm, a little nerdy, and genuinely fun to be around before anything else happens. Think chemistry, laughing until it hurts, and a slow build that gets delightfully spicy.</p>
+      <p>We create content together and separately &mdash; documenting our real life in the lifestyle. What you see is what you get.</p>
+      <p>Bill handles first contact. Introduce yourself, be genuine, stand out. The best connections always start with a real conversation.</p>
+    </div>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- PLATFORMS -->
+<section class="fi">
+  <div class="sec-label">Find Us</div>
+  <h2 style="margin-bottom:2rem">Where We Live Online</h2>
+  <div class="plat-grid">
+
+    <a class="plat-card" href="https://fetlife.com/SheltonBiCouple" target="_blank" rel="noopener">
+      <div class="plat-icon">FL</div>
+      <div class="plat-name">FetLife</div>
+      <div class="plat-desc">Our most active community profile &mdash; posts, writings, real lifestyle content, and daily activity.</div>
+      <span class="badge badge-live">Live</span>
+      <div class="plat-go">Visit profile &rarr;</div>
+    </a>
+
+    <a class="plat-card" href="https://www.swinglifestyle.com/profile/lookup.cfm?usercode=65099099" target="_blank" rel="noopener">
+      <div class="plat-icon">SLS</div>
+      <div class="plat-name">SwingLifestyle</div>
+      <div class="plat-desc">Our SLS profile for connecting with the swinger and lifestyle community.</div>
+      <span class="badge badge-live">Live</span>
+      <div class="plat-go">Visit profile &rarr;</div>
+    </a>
+
+    <a class="plat-card" href="https://sdc.com" target="_blank" rel="noopener">
+      <!-- UPDATE: Replace href above with your actual SDC profile URL -->
+      <div class="plat-icon">SDC</div>
+      <div class="plat-name">SDC</div>
+      <div class="plat-desc">Find us on SDC for international lifestyle community connection and events.</div>
+      <span class="badge badge-live">Live</span>
+      <div class="plat-go">Visit profile &rarr;</div>
+    </a>
+
+    <a class="plat-card" href="#" target="_blank" rel="noopener">
+      <!-- UPDATE: Replace href above with WickedFun Club URL or your member profile there -->
+      <div class="plat-icon">WF</div>
+      <div class="plat-name">WickedFun Club</div>
+      <div class="plat-desc">Our local Connecticut lifestyle club. Come find us in person &mdash; we love a familiar face.</div>
+      <span class="badge badge-local">Local</span>
+      <div class="plat-go">Visit club &rarr;</div>
+    </a>
+
+    <div class="plat-card dim">
+      <!-- UPDATE: Replace this card with a real link when OnlyFans is live -->
+      <div class="plat-icon">OF</div>
+      <div class="plat-name">OnlyFans</div>
+      <div class="plat-desc">Exclusive photos, videos, and subscriber content. Launching soon &mdash; follow us elsewhere to be first to know.</div>
+      <span class="badge badge-soon">Coming Soon</span>
+    </div>
+
+    <div class="plat-card dim">
+      <!-- UPDATE: Replace this card with a real link when Fansly is live -->
+      <div class="plat-icon">Fy</div>
+      <div class="plat-name">Fansly</div>
+      <div class="plat-desc">Premium content with flexible subscription tiers. Launching alongside OnlyFans.</div>
+      <span class="badge badge-soon">Coming Soon</span>
+    </div>
+
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- CONTACT -->
+<section class="fi">
+  <div class="sec-label">Get In Touch</div>
+  <div class="contact-box">
+    <h2 style="margin-bottom:.75rem">Say Hello</h2>
+    <p>We read everything. Genuine, specific, interesting messages get genuine responses. Tell us about yourself and why you're reaching out.</p>
+    <div class="contact-btns">
+      <a class="cbtn cbtn-p" href="https://fetlife.com/SheltonBiCouple" target="_blank" rel="noopener">Message on FetLife</a>
+      <!-- UPDATE: Replace the email below with your actual business email -->
+      <a class="cbtn cbtn-s" href="mailto:hello@fromatobentertainment.com">Email Us</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="ft-brand">From A to B Entertainment</span>
+  <span>&copy; 2026 &nbsp;&middot;&nbsp; Amy + Bill &nbsp;&middot;&nbsp; Shelton, CT &nbsp;&middot;&nbsp; All rights reserved</span>
+  <div class="ft-note">All content is intended for adults aged 18 and over only.</div>
+</footer>
+
+</div><!-- /wrap -->
+
+<script>
+function enter(){
+  var g=document.getElementById('gate');
+  g.classList.add('out');
+  setTimeout(function(){g.style.display='none'},520);
+}
+
+// Hero entrance sequence
+window.addEventListener('load',function(){
+  setTimeout(function(){document.getElementById('la').classList.add('in')},200);
+  setTimeout(function(){
+    document.getElementById('at').classList.add('in');
+    document.getElementById('ah').classList.add('in');
+  },500);
+  setTimeout(function(){document.getElementById('lb').classList.add('in')},900);
+  setTimeout(function(){document.getElementById('bn').classList.add('in')},1100);
+  setTimeout(function(){document.getElementById('ht').classList.add('in')},1300);
+  setTimeout(function(){document.getElementById('sh').classList.add('in')},1550);
+});
+
+// Scroll fade-ins
+var obs=new IntersectionObserver(function(entries){
+  entries.forEach(function(e){if(e.isIntersecting)e.target.classList.add('in')});
+},{threshold:.12});
+document.querySelectorAll('.fi').forEach(function(el){obs.observe(el)});
+</script>
+</body>
+</html>
