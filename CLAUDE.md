@@ -2,7 +2,7 @@
 
 ## Business
 - Name: From A to B Entertainment
-- Owners: Amy (51) + Bill (51), Shelton CT
+- Owners: Amy (51) + Bill (52), Shelton CT
 - Brand: Sultry, warm, authentic bi couple in the lifestyle
 - Domain: fromatobentertainment.com
 
