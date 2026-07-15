@@ -13,12 +13,10 @@
 - Images folder: /images
 
 ## Active Platforms
-- FetLife: fetlife.com/SheltonBiCouple (most active)
-- SwingLifestyle: https://www.swinglifestyle.com/profile/lookup.cfm?usercode=65099099
-- SDC: coming soon
-- WickedFun Club: coming soon
-- OnlyFans: coming soon
-- Fansly: coming soon
+- FetLife: fetlife.com/SheltonBiCouple (most active, live on site)
+- SwingLifestyle: https://www.swinglifestyle.com/profile/lookup.cfm?usercode=65099099 (live on site)
+- Fansly: coming soon (shown on site)
+- Removed from site for now: SDC, WickedFun Club, OnlyFans
 
 ## Website Goals
 - Hub linking all platforms
@@ -27,10 +25,12 @@
 - Age-gated, premium adult aesthetic
 
 ## Design Direction
-- Sexy, sultry, editorial
-- Dark palette, warm gold accents
-- High quality photography
+- Sexy, sultry, editorial ("After Hours" candlelit direction)
+- Warm dark palette: wine/oxblood backgrounds, rose gold and amber accents
+- Serif display (Cormorant Garamond italic) paired with DM Sans body
+- High quality photography, duotoned into the palette
 - Think high-end adult magazine aesthetic
+- Accessibility: WCAG 2.2 AA, maintain on all changes
 
 ## Content Calendar
 - Daily Fetlife posts
