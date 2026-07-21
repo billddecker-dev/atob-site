@@ -147,11 +147,6 @@ h1.brand-name.in{opacity:1}
 .hero-tag.in{opacity:1}
 .hero-tag .dot{color:var(--rose);margin:0 .5rem}
 .hero-tag em{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.15em;color:var(--rose-l)}
-.scroll-hint{margin-top:3.2rem;opacity:0;transition:opacity .7s 1.2s}
-.scroll-hint.in{opacity:1}
-.scroll-hint span{display:block;width:1px;height:52px;background:linear-gradient(to bottom,transparent,var(--bd-h));margin:0 auto;
-  animation:hintPulse 2.2s ease-in-out 2 both}
-@keyframes hintPulse{0%,100%{opacity:.4}50%{opacity:1}}
 
 /* ── RULE ── */
 .rule{height:1px;max-width:900px;margin:0 auto;background:linear-gradient(to right,transparent,var(--bd-h),transparent)}
@@ -233,7 +228,7 @@ footer .dot{color:var(--rose)}
 @media(prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   *{animation:none!important;transition:none!important}
-  .fi,.bm-letter,.hero-eye,h1.brand-name,.hero-tag,.scroll-hint,.arrow-head{opacity:1!important;transform:none!important}
+  .fi,.bm-letter,.hero-eye,h1.brand-name,.hero-tag,.arrow-head{opacity:1!important;transform:none!important}
   .arrow-track{transform:scaleX(1)!important}
 }
 </style>
@@ -281,7 +276,6 @@ footer .dot{color:var(--rose)}
     Amy + Bill <span class="dot" aria-hidden="true">·</span> Bi Couple <span class="dot" aria-hidden="true">·</span> Lifestyle <span class="dot" aria-hidden="true">·</span> Content Creators<br>
     <em>Friendship first. Weekends for mischief.</em>
   </p>
-  <div class="scroll-hint" id="sh" aria-hidden="true"><span></span></div>
 </header>
 
 <main id="main" tabindex="-1">
@@ -415,8 +409,10 @@ footer .dot{color:var(--rose)}
     main.removeAttribute('inert');
     main.removeAttribute('aria-hidden');
     setTimeout(function(){gate.style.display='none';},640);
-    // Move focus into the page content (2.4.3 focus order)
-    main.focus();
+    // Move focus into the page content (2.4.3 focus order) without
+    // scrolling away from the hero, so the page opens at the header.
+    main.focus({preventScroll:true});
+    window.scrollTo(0,0);
   };
 
   if(document.readyState!=='loading'){openGate();}
@@ -424,7 +420,7 @@ footer .dot{color:var(--rose)}
 
   // Hero entrance sequence
   window.addEventListener('load',function(){
-    var seq=[['he',150],['la',300],['at',600],['ah',600],['lb',950],['bn',1150],['ht',1400],['sh',1700]];
+    var seq=[['he',150],['la',300],['at',600],['ah',600],['lb',950],['bn',1150],['ht',1400]];
     seq.forEach(function(p){setTimeout(function(){var el=document.getElementById(p[0]);if(el)el.classList.add('in');},p[1]);});
   });
 
